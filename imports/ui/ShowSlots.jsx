@@ -34,14 +34,21 @@ const Seats = styled(Grid)(() => ({
       flexWrap: 'wrap'
 }))
 
-const ShowSlots = ({slots, onClickAdd, user}) => {
+const ShowSlots = ({slots, user}) => {
   const newslots = Slots.find({}).fetch()
   const [total, settotal] = useState(slots.individualslot)
-  const Addseats = (slots)=> {
+
+  const Addseats = (slots, seats, save)=> {
     slots.individualslot.push({status:'available',Userid:''})
     // slots.save();
     settotal(slots.individualslot)
-    console.log(total)}
+    console.log(slots)
+  }
+
+    const AddSlot = ({index}) => 
+    {
+      slots.individualslot.remove(index);
+    }
   
 
   return (
@@ -57,7 +64,7 @@ const ShowSlots = ({slots, onClickAdd, user}) => {
         }
         <button className='addbutton' onClick={()=> Addseats(slots)}>Add</button>
         </Seats>
-        {/* <button onClick={ () => onClickAdd(slots) }>Remove</button> */}
+        {/* <button onClick={ () => AddSlot(slots) }>Remove</button> */}
       </SeatContainer>
 
     </StyledBox>

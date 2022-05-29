@@ -1,7 +1,6 @@
 import { Modal, styled, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
-import { Mongo } from 'meteor/mongo';
 
 
 const StyledBox = styled(Box)(()=>({
@@ -21,11 +20,11 @@ const Eachslot = ({slot, index, user, category}) => {
     
     const Activate=(slot, user, category)=>{
         slot.status = 'booked'
-        slot.save();
+        // slot.save();
         setStatus(!Status)
         slot.Userid = user.username
         console.log(slot)
-
+        
     }
   return (
     <>

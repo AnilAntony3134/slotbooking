@@ -7,16 +7,21 @@ import { LoginForm } from './LogInform';
 import Dashboard from './Dashboard';
 import { Typography } from '@mui/material';
 
+export const save = (seats) => {
+    platinum.save();
+    gold.save();
+    economy.save();
+}
+
 export const App = () => {
-  const AddSlot = ({index}) => 
-  {
-    Slots.individualslot.remove(index);
-  }
+
   // const Addseats = (slots,lot)=> {
   //   Slots.lot.individualslot.push({status:'available',Userid:''})
   //   slots.individualslot.push({status:'available',Userid:''})
   //   settotal(slots.individualslot)
   //   console.log(total)}
+
+
 
   var user = useTracker(() => Meteor.user());
 
@@ -40,7 +45,7 @@ export const App = () => {
         <Typography fontSize={"32px"} align={"center"} bgcolor={'#393E46'} color={'white'} pt={'20px'}>Choose Your Seats</Typography>
         {  
           seats.map((slot) => 
-          <ShowSlots slots={slot} key={slot._id} onClickAdd={AddSlot} user={user}/>
+          <ShowSlots slots={slot} key={slot._id} user={user} seats={seats} save={user}/>
         )}
       </Fragment>
     ): (
