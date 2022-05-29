@@ -5,3 +5,61 @@ body {
 .main {
   background-color: aliceblue;
 }
+.active {
+  background-color: #222831;
+  color: white;
+  transition: 0.5s ease;
+  
+}
+.active:hover {
+  background-color: #9b3e00;
+  
+}
+.inactive {
+  background-color: gray;
+}
+.modalstyle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.modalbox{
+  background-color: white;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.modalbox h2{
+  margin-top: -10px;
+}
+.modalbox h3{
+  margin-top: -10px;
+}
+.modalbox button {
+  padding: 20px;
+  background-color: #FD7014;
+  border: none;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.addbutton{
+  background-color: #d5e4fa;
+  color: rgb(66, 62, 62);
+  border: none;
+  width: 55px;
+  height: 55px;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.addbutton:hover {
+  background-color: #81a5db;
+}

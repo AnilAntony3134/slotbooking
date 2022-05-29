@@ -2,10 +2,23 @@ import { Meteor } from 'meteor/meteor';
 import { Slots } from '../imports/collections/Slots';
 import { SlotCategory, Slotitem } from '../imports/classes/Category';
 import { Random } from 'random-js';
+import { Accounts } from 'meteor/accounts-base';
+
+const SEED_USERNAME = 'Anil';
+const SEED_PASSWORD = '1234';
+
 
 Meteor.startup(() => {
   
-  if (Slots.find().count() !== 0) {
+  if (!Accounts.findUserByUsername(SEED_USERNAME)) {
+    Accounts.createUser({
+      username: SEED_USERNAME,
+      password: SEED_PASSWORD,
+    });}
+
+    const user = Accounts.findUserByUsername(SEED_USERNAME);
+  
+  if (Slots.find().count() === 0) {
     const random = new Random();
     var platinum = new SlotCategory();
     platinum.category = 'Platinum';
