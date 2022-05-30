@@ -1,23 +1,26 @@
 import { integerPropType } from '@mui/utils';
 import { Class } from 'meteor/jagi:astronomy';
-import { Slots } from '../collections/Slots';
+import Slots from '../collections/Slots';
 
 
-export const Slotitem = Class.create ( {
+const Slotitem = Class.create ( {
     name: 'Slotitems',
     fields: {
         // _id: Number, 
-        
+        seatNo:{
+            type: Number,
+            required: true,
+        },
         status: {
             type: String, 
             optional: true
          },
-        Userid: String,
+        Userid: {type: String, default(){return ''}},
        
     }
 })
 
-export const SlotCategory = Class.create ( {
+const SlotCategory = Class.create ( {
     name: 'Categories',
     collection: Slots,
     fields: {
@@ -34,3 +37,5 @@ export const SlotCategory = Class.create ( {
 
     }
 })
+
+export default SlotCategory;

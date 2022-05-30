@@ -1,5 +1,5 @@
 import { Box, Grid, styled, Typography } from '@mui/material'
-import { Slots } from '../collections/Slots'
+import Slots from '../collections/Slots'
 import React, { useState } from 'react'
 import { Class } from 'meteor/jagi:astronomy';
 import Eachslot from './Eachslot'
@@ -58,9 +58,9 @@ const ShowSlots = ({slots, user, addslot}) => {
           <Eachslot slot={seat} key={index} index={index} user={user} category={slots}/>
           ) 
         }
-        <button className='addbutton' onClick={()=> Addseats(slots)}>Add</button>
+        {/* <button className='addbutton' onClick={()=> Addseats(slots)}>Add</button> */}
         </Seats>
-        <button onClick={ () => addslot(slots) }>Remove</button>
+        {/* <button onClick={ () => addslot(slots) }>Remove</button> */}
       </SeatContainer>
 
     </StyledBox>
