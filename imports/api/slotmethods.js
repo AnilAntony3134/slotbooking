@@ -15,10 +15,10 @@ Meteor.methods({
     'remove' ({seat,id}){
         const {default: SlotCategory} = require('../classes/Category');
         const category = SlotCategory.findOne({_id:id})
-        console.log(category.category, id, 'from remove')
-        // const individualslot = category.individualslot[seat]
-        // individualslot.status= 'available';
-        // individualslot.Userid='';
-        // category.save();
+        // console.log(category.category, id, 'from remove')
+        const individualslot = category.individualslot[seat]
+        individualslot.status= 'available';
+        individualslot.Userid='';
+        category.save();
     }
 })

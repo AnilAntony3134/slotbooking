@@ -35,8 +35,8 @@ const Eachslot = ({slot, index, user, category:{_id:id, price, category}}) => {
     }
   return (
     <>
-    {/* <StyledBox className={`${status ? 'active' : 'inactive'}`} onClick={handleOpen}> */}
-    <StyledBox className={status ? 'active' : 'inactive'} onClick={handleOpen}>
+    <StyledBox className={`${status ? 'active' : 'inactive'}`} onClick={handleOpen}>
+    {/* <StyledBox className={status ? 'active' : 'inactive'} onClick={handleOpen}> */}
 
         {slot.seatNo}
     </StyledBox>
