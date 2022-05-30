@@ -4,7 +4,7 @@ import { SlotCategory, Slotitem } from '../imports/classes/Category';
 import { Random } from 'random-js';
 import { Accounts } from 'meteor/accounts-base';
 
-const SEED_USERNAME = 'Anil';
+const SEED_USERNAME = 'Ajay';
 const SEED_PASSWORD = '1234';
 
 
@@ -25,7 +25,7 @@ Meteor.startup(() => {
     platinum.price = 'RS 350';
     platinum.Seats = 15;
     for (var i=0;i<platinum.Seats;i++)
-    {platinum.individualslot.push({status:'available',Userid:''})}
+    {platinum.individualslot.push({id:random, status:'available',Userid:''})}
     platinum.save();
 
 

@@ -19,8 +19,8 @@ const Eachslot = ({slot, index, user, category}) => {
     const [Status,setStatus] = useState(true)
     
     const Activate=(slot, user, category)=>{
-        slot.status = 'booked'
-        // slot.save();
+        slot.status = 'booked';
+        // [slot].save();
         setStatus(!Status)
         slot.Userid = user.username
         console.log(slot)

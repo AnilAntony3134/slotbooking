@@ -34,7 +34,7 @@ const Seats = styled(Grid)(() => ({
       flexWrap: 'wrap'
 }))
 
-const ShowSlots = ({slots, user}) => {
+const ShowSlots = ({slots, user, addslot}) => {
   const newslots = Slots.find({}).fetch()
   const [total, settotal] = useState(slots.individualslot)
 
@@ -45,10 +45,6 @@ const ShowSlots = ({slots, user}) => {
     console.log(slots)
   }
 
-    const AddSlot = ({index}) => 
-    {
-      slots.individualslot.remove(index);
-    }
   
 
   return (
@@ -64,7 +60,7 @@ const ShowSlots = ({slots, user}) => {
         }
         <button className='addbutton' onClick={()=> Addseats(slots)}>Add</button>
         </Seats>
-        {/* <button onClick={ () => AddSlot(slots) }>Remove</button> */}
+        <button onClick={ () => addslot(slots) }>Remove</button>
       </SeatContainer>
 
     </StyledBox>

@@ -21,6 +21,10 @@ export const App = () => {
   //   settotal(slots.individualslot)
   //   console.log(total)}
 
+  const AddSlot = ({_id}) => 
+  {
+    seats.remove(_id);
+  }
 
 
   var user = useTracker(() => Meteor.user());
@@ -35,6 +39,7 @@ export const App = () => {
     }
 
   return Slots.find({}).fetch()})
+    console.log(seats[0])
   
 
   return(
@@ -45,7 +50,7 @@ export const App = () => {
         <Typography fontSize={"32px"} align={"center"} bgcolor={'#393E46'} color={'white'} pt={'20px'}>Choose Your Seats</Typography>
         {  
           seats.map((slot) => 
-          <ShowSlots slots={slot} key={slot._id} user={user} seats={seats} save={user}/>
+          <ShowSlots slots={slot} key={slot._id} user={user} seats={seats} addslot={AddSlot}/>
         )}
       </Fragment>
     ): (
