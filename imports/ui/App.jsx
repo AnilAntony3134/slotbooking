@@ -37,7 +37,7 @@ export const App = () => {
   <div className='main'>
     {user ?(
       <Fragment>
-        <Dashboard user={user} logout={logout}/>
+        <Dashboard user={user} logout={logout} seats={seats}/>
         <Typography fontSize={"32px"} align={"center"} bgcolor={'#393E46'} color={'white'} pt={'20px'}>Choose Your Seats</Typography>
         {  
           seats.map((slot) => 

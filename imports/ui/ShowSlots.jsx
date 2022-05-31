@@ -36,16 +36,7 @@ const Seats = styled(Grid)(() => ({
 
 const ShowSlots = ({slots, user, addslot}) => {
   const newslots = Slots.find({}).fetch()
-  const [total, settotal] = useState(slots.individualslot)
-
-  const Addseats = (slots, seats, save)=> {
-    slots.individualslot.push({status:'available',Userid:''})
-    // slots.save();
-    settotal(slots.individualslot)
-    console.log(slots)
-  }
-
-  
+  const [total, settotal] = useState(slots.individualslot)  
 
   return (
     <StyledBox>
@@ -58,9 +49,7 @@ const ShowSlots = ({slots, user, addslot}) => {
           <Eachslot slot={seat} key={index} index={index} user={user} category={slots}/>
           ) 
         }
-        {/* <button className='addbutton' onClick={()=> Addseats(slots)}>Add</button> */}
         </Seats>
-        {/* <button onClick={ () => addslot(slots) }>Remove</button> */}
       </SeatContainer>
 
     </StyledBox>

@@ -1,7 +1,8 @@
 import { Modal, styled, Typography } from '@mui/material'
 import {Meteor} from 'meteor/meteor'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Slots from '../collections/Slots'
 
 
 const StyledBox = styled(Box)(()=>({
@@ -17,28 +18,37 @@ const Eachslot = ({slot, index, user, category:{_id:id, price, category}}) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
-    const [status,setStatus] = useState(slot.status === 'available'? true : false)
+    const [status, setStatus] = React.useState(slot.status === 'available' ? true : false)
+    const [slotuser, setSlotuser] = React.useState(slot.Userid !== ''? slot.Userid: '')
     
     const Activate=()=>{
-        setStatus(true);
-        console.log('activate')
         const seat = slot.seatNo-1
-        Meteor.call('booked',{seat,user,id})
-        
+        Meteor.call('booked',{seat,user,id}, (err, res)=>{
+            if (err) {
+                alert('Some Error Occoured');
+                return
+            }
+            setStatus(false);
+            setOpen(false);
+            setSlotuser(slot.Userid);
+        })
     }
     const DeActivate=()=>{
-        setStatus(false)
-        console.log('deactivate')
         const seat = slot.seatNo-1
-        Meteor.call('remove',{seat,user,id})
-        
+        Meteor.call('remove',{seat,user,id,slot},(err, res)=>{
+            if (err) {
+                alert('Some Error Occoured');
+                return
+            }
+            setStatus(true);
+            setOpen(false);
+            setSlotuser('');    
+        })
     }
   return (
     <>
-    <StyledBox className={`${status ? 'active' : 'inactive'}`} onClick={handleOpen}>
-    {/* <StyledBox className={status ? 'active' : 'inactive'} onClick={handleOpen}> */}
-
-        {slot.seatNo}
+    <StyledBox className={`${status ? 'active': 'inactive'} ${slot.Userid !== user.username && slot.status === 'booked' ? 'disabledslot' : ''}`} onClick={handleOpen}>
+       {slot.seatNo} {slotuser} 
     </StyledBox>
     <Modal
         open={open}
@@ -46,16 +56,16 @@ const Eachslot = ({slot, index, user, category:{_id:id, price, category}}) => {
         className={"modalstyle"}
         >
         <Box className={'modalbox'} onClick={ () => {
-            (slot.status === 'available') ? Activate() : DeActivate()      
+            status ? Activate() : DeActivate()      
             }}>
            <h4 style={{color:'#FD7014'}}>BookYourSpot</h4>
            <h2>Confirm Your Ticket</h2>
-           <h2>{user.username}</h2>
+           <h2>{slot.Userid}</h2>
            <h3>Seat No : {slot.seatNo}</h3>
            <h3>Category : {category}</h3>
            <h3>Price : {price}</h3>
            <button>
-               Confirm Purchase
+               {status ?'Buy Ticket':'Sell Ticket'}
            </button>
         </Box>
     </Modal>

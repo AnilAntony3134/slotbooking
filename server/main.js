@@ -6,7 +6,7 @@ import { Accounts } from 'meteor/accounts-base';
 import '../imports/api/slotmethods'
 import '../imports/api/slotpublications'
 
-const SEED_USERNAME = 'Ajay';
+const SEED_USERNAME = 'Anil';
 const SEED_PASSWORD = '1234';
 
 
