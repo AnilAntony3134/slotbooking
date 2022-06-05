@@ -19,36 +19,35 @@ const Eachslot = ({slot, index, user, category:{_id:id, price, category}}) => {
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
     const [status, setStatus] = React.useState(slot.status === 'available' ? true : false)
-    const [slotuser, setSlotuser] = React.useState(slot.Userid !== ''? slot.Userid: '')
+    // const [slotuser, setSlotuser] = React.useState(slot.Userid || '')
     
     const Activate=()=>{
         const seat = slot.seatNo-1
         Meteor.call('booked',{seat,user,id}, (err, res)=>{
             if (err) {
-                alert('Some Error Occoured');
+                alert(`Some Error Occoured in activating: ${err}`);
                 return
             }
             setStatus(false);
             setOpen(false);
-            setSlotuser(slot.Userid);
+            setSlotuser(Meteor.userId())
         })
     }
     const DeActivate=()=>{
         const seat = slot.seatNo-1
         Meteor.call('remove',{seat,user,id,slot},(err, res)=>{
             if (err) {
-                alert('Some Error Occoured');
+                alert(`Some Error Occoured in deactivating: ${err}`);
                 return
             }
             setStatus(true);
-            setOpen(false);
-            setSlotuser('');    
+            setOpen(false);    
         })
     }
   return (
     <>
     <StyledBox className={`${status ? 'active': 'inactive'} ${slot.Userid !== user.username && slot.status === 'booked' ? 'disabledslot' : ''}`} onClick={handleOpen}>
-       {slot.seatNo} {slotuser} 
+       {slot.seatNo}
     </StyledBox>
     <Modal
         open={open}
